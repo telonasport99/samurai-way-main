@@ -8,22 +8,7 @@
     grid-template-columns:2fr 10fr;
     width: 1200px;
 }
-.header{
-  grid-area: h;
-    background-color: aquamarine;
-}
-.nav{
-    background-color: beige;
-    grid-area: n;
-}
-.content{
-    grid-area: c;
-}
-.header img{
-    width: 40px;
-    height: 40px;
-}
-.content img{
-    width: 1000px;
-    height: 400px;
-}
+
+
+
+

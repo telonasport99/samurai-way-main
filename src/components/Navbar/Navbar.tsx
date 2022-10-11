@@ -1,9 +1,10 @@
 import React from "react";
+import cl from './Navbar.module.css'
 
 function Navbar(){
     return(
-        <nav className='nav'>
-            <div><a>Profile</a></div>
+        <nav className={cl.nav}>
+            <div><a className={`${cl.item} ${cl.active}`}>Profile</a></div>
     <div><a>Messages</a></div>
     <div><a>News</a></div>
     <div><a>Music</a></div>
