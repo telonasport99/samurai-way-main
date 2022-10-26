@@ -1,8 +1,8 @@
 import React from "react";
 import Dialogs from "../Dialogs/Dialogs";
-function Music(){
-    return(<div>Music
+function Settings(){
+    return(<div>Settings
     </div>
     )
 }
-export default Music;
+export default Settings;

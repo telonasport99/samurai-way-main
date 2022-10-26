@@ -2,6 +2,9 @@
     background-color: beige;
     grid-area: n;
 }
-.item.active{
+.active{
     color: goldenrod;
+}
+a{
+    text-decoration: none;
 }

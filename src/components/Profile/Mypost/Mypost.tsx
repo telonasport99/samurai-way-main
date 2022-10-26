@@ -1,16 +1,23 @@
 import React from "react";
-import cl from './Mypost.module.css'
+import cl from './My.module.css'
 import Post from "./Post/Post";
+import s from './My.module.css'
+import {PostsType, ProfilePageType} from "../../../redux/state";
 
-function Mypost() {
-    return (<div>
-        <div>my posts
-                <textarea></textarea>
-            <button>Add post</button>
+
+
+function Mypost(props:ProfilePageType) {
+    let postElement=props.posts.map(el=><Post likesCount={el.likesCount} message={el.message}/>)
+    return (<div className={s.content}>
+            <div>my posts
+                <div><textarea></textarea></div>
+                <div>
+                    <button>Add post</button>
+                </div>
             </div>
-            <Post count={4} text={'Hello World'}/>
-            <Post count={9} text={'How are u'}/>
+            {postElement}
         </div>
     )
 }
+
 export default Mypost

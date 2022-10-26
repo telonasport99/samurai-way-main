@@ -1,15 +1,17 @@
 import React from "react";
 import cl from './Navbar.module.css'
+import {NavLink} from "react-router-dom";
 
-function Navbar(){
-    return(
+function Navbar() {
+    return (
         <nav className={cl.nav}>
-            <div><a className={`${cl.item} ${cl.active}`}>Profile</a></div>
-    <div><a>Messages</a></div>
-    <div><a>News</a></div>
-    <div><a>Music</a></div>
-    <div><a>Setting</a></div>
-    </nav>
+            <div><NavLink activeClassName={cl.active} to='/profile' >Profile</NavLink></div>
+            <div><NavLink activeClassName={cl.active} to='/dialogs'>Messages</NavLink></div>
+            <div> <NavLink activeClassName={cl.active} to='/news'>News</NavLink></div>
+            <div><NavLink activeClassName={cl.active} to='/music'>Music</NavLink></div>
+            <div><NavLink activeClassName={cl.active} to='/settings'>Setting</NavLink></div>
+        </nav>
     )
 }
+
 export default Navbar
