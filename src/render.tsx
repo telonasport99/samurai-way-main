@@ -10,6 +10,8 @@ export const rerenderEntireTree = (state: RootStateType) => {
                             posts={state.profilePage.posts}
                             messages={state.dialogsPage.messages}
                             addPost={addPost}
+                            newPostText={state.profilePage.newPostText}
+
         />
         </BrowserRouter>,
         document.getElementById('root')

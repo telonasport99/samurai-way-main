@@ -16,6 +16,7 @@ export type PostsType = {
 }
 export type ProfilePageType = {
     posts: Array<PostsType>
+    newPostText:string
 }
 export type DialogsPageType = {
     dialogs: Array<DialogsType>,
@@ -32,6 +33,7 @@ export let state: RootStateType = {
             {id: 2, message: 'hel2', likesCount: 12},
             {id: 3, message: 'hel', likesCount: 6},
         ],
+        newPostText:''
     },
     dialogsPage: {
         dialogs: [
@@ -54,5 +56,9 @@ export let addPost = (postMessage:string)=>{
         likesCount:3
     }
     state.profilePage.posts.push(newPost)
+    rerenderEntireTree(state)
+}
+export const onPostChange =(newPostText:string)=>{
+    state.profilePage.newPostText = newPostText
     rerenderEntireTree(state)
 }

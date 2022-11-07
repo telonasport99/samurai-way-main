@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import cl from './My.module.css'
 import Post from "./Post/Post";
 import s from './My.module.css'
@@ -6,17 +6,15 @@ import {ProfileProp} from "../Profile";
 
 function Mypost(props: ProfileProp) {
     let postElement = props.posts.map(el => <Post key={el.id} likesCount={el.likesCount} message={el.message}/>)
-    let newPostElement = React.createRef<HTMLTextAreaElement>()
     let addpost = () => {
-        if (newPostElement.current) {
-            props.addPost(newPostElement.current.value)
-            newPostElement.current.value = ''
-        }
+            props.addPost(props.newPostText)
+
     }
+    const onPostChangeHandler=(e:ChangeEvent<HTMLTextAreaElement>)=>props.onPostChangeCallback(e.currentTarget.value)
 
     return (<div className={s.content}>
             <div>my posts
-                <div><textarea ref={newPostElement}></textarea></div>
+                <div><textarea onChange={onPostChangeHandler}  value={props.newPostText}/></div>
                 <div>
                     <button onClick={addpost}>Add post</button>
                 </div>
