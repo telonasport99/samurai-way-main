@@ -8,7 +8,6 @@ function Mypost(props: ProfileProp) {
     let postElement = props.posts.map(el => <Post key={el.id} likesCount={el.likesCount} message={el.message}/>)
     let addpost = () => {
             props.addPost(props.newPostText)
-
     }
     const onPostChangeHandler=(e:ChangeEvent<HTMLTextAreaElement>)=>props.onPostChangeCallback(e.currentTarget.value)
 
