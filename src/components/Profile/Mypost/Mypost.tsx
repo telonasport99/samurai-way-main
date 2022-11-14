@@ -5,7 +5,7 @@ import s from './My.module.css'
 import {ProfileProp} from "../Profile";
 
 function Mypost(props: ProfileProp) {
-    let postElement = props.posts.map(el => <Post key={el.id} likesCount={el.likesCount} message={el.message}/>)
+    let postElement = props.posts.map(el => <Post key={el.id} likesCount={el.likesCount} id={1} message={el.message}/>)
     let addpost = () => {
             props.addPost(props.newPostText)
     }

@@ -8,7 +8,7 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import Dialogs from "./components/Dialogs/Dialogs";
-import {DialogsType, MessageType, onPostChange, PostsType} from "./redux/state";
+import {DialogsType, MessageType, PostsType} from "./redux/state";
 
 type AppState = {
     dialogs: Array<DialogsType>,
@@ -16,6 +16,7 @@ type AppState = {
     posts: Array<PostsType>
     addPost:(postMessage:string)=>void
     newPostText:string
+    onPostChange:(newPostText:string)=>void
 }
 
 function App(props: AppState) {
@@ -27,7 +28,7 @@ function App(props: AppState) {
                     <Route path={'/profile'} render={() => <Profile posts={props.posts}
                                                                     addPost={props.addPost}
                                                                     newPostText={props.newPostText}
-                                                                    onPostChangeCallback={onPostChange}/>}/>
+                                                                    onPostChangeCallback={props.onPostChange}/>}/>
                     <Route path={'/dialogs'}
                            render={() => <Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
                     <Route path={'/news'} render={() => <News/>}/>
