@@ -9,9 +9,8 @@ const rerenderEntireTree =() => {
         <BrowserRouter><App dialogs={store.getState().dialogsPage.dialogs}
                             posts={store.getState().profilePage.posts}
                             messages={store.getState().dialogsPage.messages}
-                            addPost={store.addPost.bind(store)}
                             newPostText={store.getState().profilePage.newPostText}
-                            onPostChange={store.onPostChange.bind(store)}
+                            dispatch={store.dispatch.bind(store)}
         />
         </BrowserRouter>,
         document.getElementById('root')

@@ -7,9 +7,9 @@ import {ProfileProp} from "../Profile";
 function Mypost(props: ProfileProp) {
     let postElement = props.posts.map(el => <Post key={el.id} likesCount={el.likesCount} id={1} message={el.message}/>)
     let addpost = () => {
-            props.addPost(props.newPostText)
+            props.dispatch({type:'ADD-POST'})
     }
-    const onPostChangeHandler=(e:ChangeEvent<HTMLTextAreaElement>)=>props.onPostChangeCallback(e.currentTarget.value)
+    const onPostChangeHandler=(e:ChangeEvent<HTMLTextAreaElement>)=>props.dispatch({type:'ON-POST-CHANGE',newPostText:e.currentTarget.value})
 
     return (<div className={s.content}>
             <div>my posts
