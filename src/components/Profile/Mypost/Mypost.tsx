@@ -3,13 +3,22 @@ import cl from './My.module.css'
 import Post from "./Post/Post";
 import s from './My.module.css'
 import {ProfileProp} from "../Profile";
-
+import {AddPostActionType, OnPostChangeActionType} from "../../../redux/state";
+let addPostActionCreator = ():AddPostActionType=>{
+    return {
+        type:'ADD-POST'
+    }
+}
+ let onPostChangeActionCreator=(text:string):OnPostChangeActionType=>{
+    return {type:'ON-POST-CHANGE',
+         newPostText:text}
+ }
 function Mypost(props: ProfileProp) {
     let postElement = props.posts.map(el => <Post key={el.id} likesCount={el.likesCount} id={1} message={el.message}/>)
     let addpost = () => {
-            props.dispatch({type:'ADD-POST'})
+            props.dispatch(addPostActionCreator())
     }
-    const onPostChangeHandler=(e:ChangeEvent<HTMLTextAreaElement>)=>props.dispatch({type:'ON-POST-CHANGE',newPostText:e.currentTarget.value})
+    const onPostChangeHandler=(e:ChangeEvent<HTMLTextAreaElement>)=>props.dispatch(onPostChangeActionCreator(e.currentTarget.value))
 
     return (<div className={s.content}>
             <div>my posts
