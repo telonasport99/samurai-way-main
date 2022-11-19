@@ -11,6 +11,7 @@ import {
     OnPostChangeActionType,
     SendMessageType, UpdateNewMessageType
 } from "../../redux/state";
+import {sendMessageActionCreator, updateNewMessageBodyActionCreator} from "../../redux/dialogs-reducer";
 
 type DialogsPageTypeProps = {
     dialogs: Array<DialogsType>,
@@ -18,16 +19,7 @@ type DialogsPageTypeProps = {
     newMessageBody: string
     dispatch:(action: ActionType)=>void
 }
-let sendMessageActionCreator = ():SendMessageType=>{
-    return {
-        type:'SEND-MESSAGE'
-    }
-}
-let updateNewMessageBodyActionCreator=(body:string):UpdateNewMessageType=>{
-    return {type:"UPDATE-NEW-MESSAGE-BODY",
-        body:body
-    }
-}
+
 function Dialogs(props:DialogsPageTypeProps) {
 
     let dialogsElements = props.dialogs.map(el=> <DialogItem name={el.name} id={el.id}/>)
