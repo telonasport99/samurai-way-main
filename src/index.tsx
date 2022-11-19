@@ -11,6 +11,7 @@ const rerenderEntireTree =() => {
                             messages={store.getState().dialogsPage.messages}
                             newPostText={store.getState().profilePage.newPostText}
                             dispatch={store.dispatch.bind(store)}
+                            newMessageBody={store.getState().dialogsPage.newMessageBody}
         />
         </BrowserRouter>,
         document.getElementById('root')

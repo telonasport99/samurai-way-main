@@ -1,23 +1,62 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import cl from './Dialogs.module.css'
 import {NavLink} from "react-router-dom";
 import DialogItem from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {DialogsPageType} from "../../redux/state";
+import {
+    ActionType,
+    AddPostActionType,
+    DialogsType,
+    MessageType,
+    OnPostChangeActionType,
+    SendMessageType, UpdateNewMessageType
+} from "../../redux/state";
 
-
-function Dialogs(props:DialogsPageType) {
+type DialogsPageTypeProps = {
+    dialogs: Array<DialogsType>,
+    messages: Array<MessageType>
+    newMessageBody: string
+    dispatch:(action: ActionType)=>void
+}
+let sendMessageActionCreator = ():SendMessageType=>{
+    return {
+        type:'SEND-MESSAGE'
+    }
+}
+let updateNewMessageBodyActionCreator=(body:string):UpdateNewMessageType=>{
+    return {type:"UPDATE-NEW-MESSAGE-BODY",
+        body:body
+    }
+}
+function Dialogs(props:DialogsPageTypeProps) {
 
     let dialogsElements = props.dialogs.map(el=> <DialogItem name={el.name} id={el.id}/>)
 
     let messageElements = props.messages.map(el=> <Message message={el.message}/>)
+    let newMessageBody = props.newMessageBody
+    let onSendMessageClick = ()=>{
+    props.dispatch(sendMessageActionCreator())
+    }
+    let onNewMessageChange = (e:ChangeEvent<HTMLTextAreaElement>)=>{
+     let body = e.currentTarget.value
+        props.dispatch(updateNewMessageBodyActionCreator(body))
+    }
 
     return (<div className={cl.dialogs}>
             <div className={cl.dialogsItems}>
                 {dialogsElements}
             </div>
             <div className={cl.message}>
-                {messageElements}
+                <div>{messageElements}</div>
+                <div>
+                    <div>
+                        <div><textarea placeholder={'Enter your message'}
+                                       value={newMessageBody}
+                                       onChange={onNewMessageChange}
+                        /></div>
+                        <div><button onClick={onSendMessageClick}>send</button></div>
+                    </div>
+                </div>
             </div>
         </div>
     )

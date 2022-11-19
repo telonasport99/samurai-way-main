@@ -8,14 +8,22 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import Dialogs from "./components/Dialogs/Dialogs";
-import {AddPostActionType, DialogsType, MessageType, OnPostChangeActionType, PostsType} from "./redux/state";
+import {
+    ActionType,
+    AddPostActionType,
+    DialogsType,
+    MessageType,
+    OnPostChangeActionType,
+    PostsType
+} from "./redux/state";
 
 type AppState = {
     dialogs: Array<DialogsType>,
     messages: Array<MessageType>,
+    newMessageBody: string
     posts: Array<PostsType>
     newPostText:string
-    dispatch:(action: AddPostActionType|OnPostChangeActionType)=>void
+    dispatch:(action: ActionType)=>void
 }
 
 function App(props: AppState) {
@@ -29,7 +37,11 @@ function App(props: AppState) {
                                                                     dispatch={props.dispatch}
                     />}/>
                     <Route path={'/dialogs'}
-                           render={() => <Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
+                           render={() => <Dialogs dialogs={props.dialogs} messages={props.messages}
+                                                  newMessageBody={props.newMessageBody}
+                                                  dispatch={props.dispatch}
+
+                           />}/>
                     <Route path={'/news'} render={() => <News/>}/>
                     <Route path={'/music'} render={() => <Music/>}/>
                     <Route path={'/settings'} render={() => <Settings/>}/>

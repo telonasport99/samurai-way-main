@@ -3,14 +3,22 @@ export type StoreType={
     getState:()=>RootStateType
     _callSubscriber:(state:RootStateType)=>void
     subscribe:(observer:(state:RootStateType)=>void)=>void
-    dispatch:(action: AddPostActionType|OnPostChangeActionType)=>void
+    dispatch:(action:ActionType)=>void
 }
+export type ActionType= AddPostActionType|OnPostChangeActionType|UpdateNewMessageType|SendMessageType
 export type AddPostActionType = {
     type:'ADD-POST'
 }
 export type OnPostChangeActionType = {
     type:"ON-POST-CHANGE"
     newPostText:string}
+export type UpdateNewMessageType = {
+    type:'UPDATE-NEW-MESSAGE-BODY'
+    body:string
+}
+export type SendMessageType = {
+    type:'SEND-MESSAGE'
+}
 let store:StoreType = {
     _state:  {
         profilePage: {
@@ -31,7 +39,8 @@ let store:StoreType = {
                 {id: 1, message: 'hi'},
                 {id: 2, message: 'hi'},
                 {id: 3, message: 'hi'}
-            ]
+            ],
+            newMessageBody: ''
         }
 
     },
@@ -43,7 +52,7 @@ let store:StoreType = {
     subscribe (observer:(state:RootStateType)=>void){
         this._callSubscriber=observer
     },
-    dispatch(action:any){
+    dispatch(action:ActionType){
         if (action.type === "ADD-POST"){
             let newPost:PostsType = {
                 id:4,
@@ -56,10 +65,20 @@ let store:StoreType = {
         }else if(action.type === "ON-POST-CHANGE"){
             this._state.profilePage.newPostText = action.newPostText
             this._callSubscriber(this._state)
+        }else if (action.type === 'UPDATE-NEW-MESSAGE-BODY'){
+            this._state.dialogsPage.newMessageBody = action.body
+            this._callSubscriber(this._state)
+        }
+        else if (action.type === 'SEND-MESSAGE'){
+            let body = this._state.dialogsPage.newMessageBody
+            this._state.dialogsPage.newMessageBody = ''
+            this._state.dialogsPage.messages.push({id: 4, message: body})
+            this._callSubscriber(this._state)
         }
     }
 
 }
+
 
 export type MessageType = {
     id?: number,
@@ -81,6 +100,7 @@ export type ProfilePageType = {
 export type DialogsPageType = {
     dialogs: Array<DialogsType>,
     messages: Array<MessageType>
+    newMessageBody: string
 }
 export type RootStateType = {
     profilePage: ProfilePageType,
