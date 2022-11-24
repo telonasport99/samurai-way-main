@@ -58,8 +58,8 @@ let store:StoreType = {
         this._callSubscriber=observer
     },
     dispatch(action:ActionType){
-        profileReducer(this._state,action)
-        dialogsReducer(this._state,action)
+        profileReducer(this._state.profilePage,action)
+        dialogsReducer(this._state.dialogsPage,action)
         this._callSubscriber(this._state)
     }
 

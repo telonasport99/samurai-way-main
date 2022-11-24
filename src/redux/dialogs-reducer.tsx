@@ -1,16 +1,38 @@
 import React from "react";
-import state, {ActionType, PostsType, RootStateType, SendMessageType, UpdateNewMessageType} from "./state";
+import state, {
+    ActionType, DialogsPageType,
+    DialogsType,
+    MessageType,
+    PostsType,
+    RootStateType,
+    SendMessageType,
+    UpdateNewMessageType
+} from "./store";
 import profileReducer from "./profile-reducer";
-type dialogsReducerType = (state:RootStateType,action:ActionType)=>RootStateType
-const dialogsReducer:dialogsReducerType=(state,action)=> {
+
+let initialState = {
+    dialogs: [
+        {id: 1, name: 'Dimych'},
+        {id: 2, name: 'Dimy'},
+        {id: 3, name: 'Dimyh'}
+    ],
+    messages: [
+        {id: 1, message: 'hi'},
+        {id: 2, message: 'hi'},
+        {id: 3, message: 'hi'}
+    ],
+    newMessageBody: ''
+}
+type dialogsReducerType = (state:DialogsPageType,action:ActionType)=>DialogsPageType
+const dialogsReducer=(state: DialogsPageType=initialState,action: ActionType): DialogsPageType=> {
     switch (action.type) {
         case "SEND-MESSAGE":
-            let body = state.dialogsPage.newMessageBody
-            state.dialogsPage.newMessageBody = ''
-            state.dialogsPage.messages.push({id: 4, message: body})
+            let body = state.newMessageBody
+            state.newMessageBody = ''
+            state.messages.push({id: 4, message: body})
             return state
         case "UPDATE-NEW-MESSAGE-BODY":
-            state.dialogsPage.newMessageBody = action.body
+            state.newMessageBody = action.body
             return state
         default:
             return state

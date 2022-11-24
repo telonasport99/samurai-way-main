@@ -15,15 +15,13 @@ import {
     MessageType,
     OnPostChangeActionType,
     PostsType
-} from "./redux/state";
+} from "./redux/store";
+import {ReduxStateType} from "./redux/redux-store";
+import {Dispatch} from "redux";
 
 type AppState = {
-    dialogs: Array<DialogsType>,
-    messages: Array<MessageType>,
-    newMessageBody: string
-    posts: Array<PostsType>
-    newPostText:string
-    dispatch:(action: ActionType)=>void
+    state: ReduxStateType
+    dispatch: Dispatch
 }
 
 function App(props: AppState) {
@@ -32,13 +30,13 @@ function App(props: AppState) {
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route path={'/profile'} render={() => <Profile posts={props.posts}
-                                                                    newPostText={props.newPostText}
+                    <Route path={'/profile'} render={() => <Profile posts={props.state.profilePage.posts}
+                                                                    newPostText={props.state.profilePage.newPostText}
                                                                     dispatch={props.dispatch}
                     />}/>
                     <Route path={'/dialogs'}
-                           render={() => <Dialogs dialogs={props.dialogs} messages={props.messages}
-                                                  newMessageBody={props.newMessageBody}
+                           render={() => <Dialogs dialogs={props.state.dialogsPage.dialogs} messages={props.state.dialogsPage.messages}
+                                                  newMessageBody={props.state.dialogsPage.newMessageBody}
                                                   dispatch={props.dispatch}
 
                            />}/>

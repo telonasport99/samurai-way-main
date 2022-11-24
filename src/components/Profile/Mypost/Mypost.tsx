@@ -3,7 +3,7 @@ import cl from './My.module.css'
 import Post from "./Post/Post";
 import s from './My.module.css'
 import {ProfileProp} from "../Profile";
-import {AddPostActionType, OnPostChangeActionType} from "../../../redux/state";
+import {AddPostActionType, OnPostChangeActionType} from "../../../redux/store";
 import {addPostActionCreator, onPostChangeActionCreator} from "../../../redux/profile-reducer";
 
 function Mypost(props: ProfileProp) {

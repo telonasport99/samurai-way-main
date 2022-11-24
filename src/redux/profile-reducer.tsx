@@ -1,20 +1,35 @@
 import React from "react";
 import {RootStateOrAny} from "react-redux";
-import state, {ActionType, AddPostActionType, OnPostChangeActionType, PostsType, RootStateType} from "./state";
-type profileReducerType = (state:RootStateType,action:ActionType)=>RootStateType
-const profileReducer:profileReducerType=(state:RootStateType,action)=> {
+import state, {
+    ActionType,
+    AddPostActionType,
+    OnPostChangeActionType,
+    PostsType,
+    ProfilePageType,
+    RootStateType
+} from "./store";
+type profileReducerType = (state:ProfilePageType,action:ActionType)=>ProfilePageType
+let initialState = {
+        posts: [
+            {id: 1, message: 'hello', likesCount: 1},
+            {id: 2, message: 'hel2', likesCount: 12},
+            {id: 3, message: 'hel', likesCount: 6},
+        ],
+        newPostText:''
+}
+const profileReducer=(state: ProfilePageType=initialState,action: ActionType): ProfilePageType=> {
     switch (action.type) {
         case "ADD-POST":
             let newPost: PostsType = {
                 id: 4,
-                message: state.profilePage.newPostText,
+                message: state.newPostText,
                 likesCount: 3
             }
-            state.profilePage.posts.push(newPost)
-            state.profilePage.newPostText = ''
+            state.posts.push(newPost)
+            state.newPostText = ''
             return state
         case "ON-POST-CHANGE":
-            state.profilePage.newPostText = action.newPostText
+            state.newPostText = action.newPostText
             return state
         default:
             return state

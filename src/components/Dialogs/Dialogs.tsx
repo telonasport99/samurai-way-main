@@ -10,7 +10,7 @@ import {
     MessageType,
     OnPostChangeActionType,
     SendMessageType, UpdateNewMessageType
-} from "../../redux/state";
+} from "../../redux/store";
 import {sendMessageActionCreator, updateNewMessageBodyActionCreator} from "../../redux/dialogs-reducer";
 
 type DialogsPageTypeProps = {
