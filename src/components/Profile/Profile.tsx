@@ -1,8 +1,7 @@
 import React from "react";
-import cl from './Profile.module.css'
-import Mypost from "./Mypost/Mypost";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {ActionType, AddPostActionType, OnPostChangeActionType, PostsType, ProfilePageType} from "../../redux/store";
+import {ActionType, PostsType} from "../../redux/store";
+import MypostContainer from "./Mypost/MypostContainer";
 
 export type ProfileProp = {
     posts: Array<PostsType>
@@ -15,7 +14,7 @@ function Profile(props:ProfileProp) {
     return (
         <div >
             <ProfileInfo/>
-           <Mypost posts={props.posts}  newPostText={props.newPostText} dispatch={props.dispatch}/>
+           <MypostContainer posts={props.posts}  newPostText={props.newPostText} dispatch={props.dispatch}/>
         </div>
     )
 }

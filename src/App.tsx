@@ -18,6 +18,7 @@ import {
 } from "./redux/store";
 import {ReduxStateType} from "./redux/redux-store";
 import {Dispatch} from "redux";
+import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 
 type AppState = {
     state: ReduxStateType
@@ -35,7 +36,7 @@ function App(props: AppState) {
                                                                     dispatch={props.dispatch}
                     />}/>
                     <Route path={'/dialogs'}
-                           render={() => <Dialogs dialogs={props.state.dialogsPage.dialogs} messages={props.state.dialogsPage.messages}
+                           render={() => <DialogsContainer dialogs={props.state.dialogsPage.dialogs} messages={props.state.dialogsPage.messages}
                                                   newMessageBody={props.state.dialogsPage.newMessageBody}
                                                   dispatch={props.dispatch}
 
