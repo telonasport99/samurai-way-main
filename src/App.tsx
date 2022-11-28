@@ -20,27 +20,15 @@ import {ReduxStateType} from "./redux/redux-store";
 import {Dispatch} from "redux";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 
-type AppState = {
-    state: ReduxStateType
-    dispatch: Dispatch
-}
 
-function App(props: AppState) {
+function App() {
     return (
             <div className="app-wrapper">
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route path={'/profile'} render={() => <Profile posts={props.state.profilePage.posts}
-                                                                    newPostText={props.state.profilePage.newPostText}
-                                                                    dispatch={props.dispatch}
-                    />}/>
-                    <Route path={'/dialogs'}
-                           render={() => <DialogsContainer dialogs={props.state.dialogsPage.dialogs} messages={props.state.dialogsPage.messages}
-                                                  newMessageBody={props.state.dialogsPage.newMessageBody}
-                                                  dispatch={props.dispatch}
-
-                           />}/>
+                    <Route path={'/profile'} render={() => <Profile/>}/>
+                    <Route path={'/dialogs'} render={() => <DialogsContainer/>}/>
                     <Route path={'/news'} render={() => <News/>}/>
                     <Route path={'/music'} render={() => <Music/>}/>
                     <Route path={'/settings'} render={() => <Settings/>}/>

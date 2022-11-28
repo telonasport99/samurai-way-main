@@ -13,6 +13,7 @@ import {
 } from "../../redux/store";
 import {sendMessageActionCreator, updateNewMessageBodyActionCreator} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
+import {StoreContext} from "../../StoreContext";
 
 type DialogsPageTypeProps = {
     dialogs: Array<DialogsType>,
@@ -21,21 +22,25 @@ type DialogsPageTypeProps = {
     dispatch:(action: ActionType)=>void
 }
 
-export function DialogsContainer(props:DialogsPageTypeProps) {
-    let onSendMessageClick = ()=>{
-    props.dispatch(sendMessageActionCreator())
-    }
+export function DialogsContainer() {
 
-    let onNewMessageChange = (body: string)=>{
-        props.dispatch(updateNewMessageBodyActionCreator(body))
-    }
 
     return (
-        <Dialogs dialogs={props.dialogs}
-                 messages={props.messages}
-                 newMessageBody={props.newMessageBody}
+        <StoreContext.Consumer>
+            {(store)=>{
+                let onSendMessageClick = ()=>{
+                    store.dispatch(sendMessageActionCreator())
+                }
+
+                let onNewMessageChange = (body: string)=>{
+                    store.dispatch(updateNewMessageBodyActionCreator(body))
+                }
+        return <Dialogs dialogs={store._state.dialogsPage.dialogs}
+                 messages={store._state.dialogsPage.messages}
+                 newMessageBody={store._state.dialogsPage.newMessageBody}
                  onSendMessageClick={onSendMessageClick}
                  onNewMessageChange={onNewMessageChange}
-        />
+        />}}
+        </StoreContext.Consumer>
     )
 }

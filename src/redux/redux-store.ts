@@ -7,10 +7,12 @@ import {ActionType} from "./store";
 export type RootState = typeof reducers
 export type ReduxStateType = ReturnType<RootState>
 export type StoreType = Store<ReduxStateType, ActionType>
+
 let reducers = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer
 })
+
 let store: StoreType = createStore(reducers)
 
 export default store

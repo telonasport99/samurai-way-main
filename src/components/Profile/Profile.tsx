@@ -10,11 +10,11 @@ export type ProfileProp = {
 }
 
 
-function Profile(props:ProfileProp) {
+function Profile() {
     return (
         <div >
             <ProfileInfo/>
-           <MypostContainer posts={props.posts}  newPostText={props.newPostText} dispatch={props.dispatch}/>
+           <MypostContainer />
         </div>
     )
 }
