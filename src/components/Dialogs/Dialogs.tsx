@@ -14,9 +14,9 @@ type DialogsPageTypeProps = {
 
 function Dialogs(props:DialogsPageTypeProps) {
 
-    let dialogsElements = props.dialogs.map(el=> <DialogItem name={el.name} id={el.id}/>)
+    let dialogsElements = props.dialogs.map(el=> <DialogItem key={el.id}name={el.name} id={el.id}/>)
 
-    let messageElements = props.messages.map(el=> <Message message={el.message}/>)
+    let messageElements = props.messages.map(el=> <Message key={el.id} message={el.message}/>)
     let newMessageBody = props.newMessageBody
     let onSendMessageClick = ()=>{
     props.onSendMessageClick()
