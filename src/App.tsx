@@ -19,6 +19,8 @@ import {
 import {ReduxStateType} from "./redux/redux-store";
 import {Dispatch} from "redux";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
+import Users from "./components/Users/Users";
+import UsersContainer from "./components/Users/UsersContainer";
 
 
 function App() {
@@ -32,6 +34,7 @@ function App() {
                     <Route path={'/news'} render={() => <News/>}/>
                     <Route path={'/music'} render={() => <Music/>}/>
                     <Route path={'/settings'} render={() => <Settings/>}/>
+                    <Route path={'/users'} render={() => <UsersContainer/>}/>
                 </div>
             </div>
     );

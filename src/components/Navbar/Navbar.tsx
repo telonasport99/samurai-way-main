@@ -10,6 +10,8 @@ function Navbar() {
             <div> <NavLink activeClassName={cl.active} to='/news'>News</NavLink></div>
             <div><NavLink activeClassName={cl.active} to='/music'>Music</NavLink></div>
             <div><NavLink activeClassName={cl.active} to='/settings'>Setting</NavLink></div>
+            <div><NavLink activeClassName={cl.active} to='/users'>Users</NavLink></div>
+
         </nav>
     )
 }

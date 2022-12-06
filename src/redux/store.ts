@@ -1,6 +1,7 @@
 import profileReducer from "./profile-reducer";
 import dialogsReducer from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
+import {UsersType} from "./user-reducer";
 
 export type StoreType={
     _state:RootStateType
@@ -9,10 +10,23 @@ export type StoreType={
     subscribe:(observer:(state:RootStateType)=>void)=>void
     dispatch:(action:ActionType)=>void
 }
-export type ActionType= AddPostActionType|OnPostChangeActionType|UpdateNewMessageType|SendMessageType
+export type ActionType= AddPostActionType|OnPostChangeActionType|UpdateNewMessageType|SendMessageType | UsersActionFollowType | UsersActionUnFollowType|UsersSetUserType
 export type AddPostActionType = {
     type:'ADD-POST'
 }
+export type UsersActionFollowType = {
+    type:'FOLLOW'
+    userId:number
+}
+export type UsersActionUnFollowType = {
+    type:'UNFOLLOW'
+    userId:number
+}
+export type UsersSetUserType = {
+    type:'SET-USER'
+    users:Array<UsersType>
+}
+
 export type OnPostChangeActionType = {
     type:"ON-POST-CHANGE"
     newPostText:string}
