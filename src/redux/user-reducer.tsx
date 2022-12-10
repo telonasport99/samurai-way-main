@@ -7,26 +7,23 @@ import state, {
     ProfilePageType,
     RootStateType, UsersActionFollowType, UsersActionUnFollowType, UsersSetUserType
 } from "./store";
+export type LocationType= {
+    city: string
+    country: string
+}
 export type UsersType = {
-    id:number
-    photoUrl:string
-    followed:boolean
-    fullName:string
-    status:string
-    location:{
-        city:string
-        country:string
-    }
+    id: number
+    photoURL: string
+    followed: boolean
+    name:string
+    status: string
+    location: LocationType
 }
 type InitialStateType = {
     users:Array<UsersType>
 }
 let initialState:InitialStateType = {
-        users: [
-            {id: 1, photoUrl:'https://i.pinimg.com/736x/18/ca/6f/18ca6f28ec97d6afb3117d4b6aece2e6.jpg',followed:true, fullName: 'Dima', status:'Iam', location:{city:'Minsk',country:'Belarus'}},
-            {id: 2, photoUrl:'https://i.pinimg.com/736x/18/ca/6f/18ca6f28ec97d6afb3117d4b6aece2e6.jpg', followed:false, fullName: 'Vadim', status:'am', location:{city:'Grodno',country:'Belarus'}},
-            {id: 3, photoUrl:'https://i.pinimg.com/736x/18/ca/6f/18ca6f28ec97d6afb3117d4b6aece2e6.jpg', followed:true, fullName: 'hello', status:'I', location:{city:'Volkovysk',country:'Belarus'}},
-        ],
+        users: [],
 }
 const usersReducer=(state:InitialStateType=initialState,action: ActionType): InitialStateType=> {
     switch (action.type) {
