@@ -19,7 +19,7 @@ export type UsersType = {
     status: string
     location: LocationType
 }
-type InitialStateType = {
+export type InitialStateType = {
     users:Array<UsersType>
 }
 let initialState:InitialStateType = {
