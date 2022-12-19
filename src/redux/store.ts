@@ -10,7 +10,8 @@ export type StoreType={
     subscribe:(observer:(state:RootStateType)=>void)=>void
     dispatch:(action:ActionType)=>void
 }
-export type ActionType= AddPostActionType|OnPostChangeActionType|UpdateNewMessageType|SendMessageType | UsersActionFollowType | UsersActionUnFollowType|UsersSetUserType
+export type ActionType= AddPostActionType|OnPostChangeActionType|UpdateNewMessageType|SendMessageType |
+    UsersActionFollowType | UsersActionUnFollowType|UsersSetUserType |  SetCurrentPageType | SetTotalCountType
 export type AddPostActionType = {
     type:'ADD-POST'
 }
@@ -25,6 +26,14 @@ export type UsersActionUnFollowType = {
 export type UsersSetUserType = {
     type:'SET-USER'
     users:Array<UsersType>
+}
+export type SetCurrentPageType = {
+    type:"SET-CURRENT-PAGE"
+    currentPage:number
+}
+export type SetTotalCountType = {
+    type:'SET-TOTAL-COUNT'
+    totalCount:number
 }
 
 export type OnPostChangeActionType = {

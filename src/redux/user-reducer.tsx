@@ -5,7 +5,12 @@ import state, {
     OnPostChangeActionType,
     PostsType,
     ProfilePageType,
-    RootStateType, UsersActionFollowType, UsersActionUnFollowType, UsersSetUserType
+    RootStateType,
+    SetCurrentPageType,
+ SetTotalCountType,
+    UsersActionFollowType,
+    UsersActionUnFollowType,
+    UsersSetUserType
 } from "./store";
 export type LocationType= {
     city: string
@@ -21,9 +26,15 @@ export type UsersType = {
 }
 export type InitialStateType = {
     users:Array<UsersType>
+    pageSize:number
+    totalUserCount:number
+    currentPage:number
 }
 let initialState:InitialStateType = {
         users: [],
+        pageSize: 5,
+        totalUserCount:20,
+        currentPage:1
 }
 const usersReducer=(state:InitialStateType=initialState,action: ActionType): InitialStateType=> {
     switch (action.type) {
@@ -32,7 +43,11 @@ const usersReducer=(state:InitialStateType=initialState,action: ActionType): Ini
         case "UNFOLLOW":
             return  {...state, users: state.users.map(u=>u.id===action.userId?{...u, followed:false}:u)}
         case "SET-USER":
-            return {...state, users: [...state.users,...action.users]}
+            return {...state, users: action.users}
+        case "SET-CURRENT-PAGE":
+            return {...state, currentPage: action.currentPage}
+        case "SET-TOTAL-COUNT":
+            return {...state, totalUserCount: action.totalCount}
         default:
             return state
     }
@@ -42,5 +57,7 @@ export let followAC = (userId:number):UsersActionFollowType=>({type:'FOLLOW',use
 
 export let unFollowAC=(userId:number):UsersActionUnFollowType=>({type:'UNFOLLOW',userId})
 export let setUserAC=(users:Array<UsersType>):UsersSetUserType=>({type:'SET-USER',users})
+export let setCurrentPageAC=(currentPage:number):SetCurrentPageType=>({type:'SET-CURRENT-PAGE',currentPage})
+export let setTotalCountAC=(totalCount:number):SetTotalCountType=>({type:'SET-TOTAL-COUNT',totalCount})
 
 export default usersReducer
