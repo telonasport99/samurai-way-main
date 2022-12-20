@@ -11,7 +11,8 @@ export type StoreType={
     dispatch:(action:ActionType)=>void
 }
 export type ActionType= AddPostActionType|OnPostChangeActionType|UpdateNewMessageType|SendMessageType |
-    UsersActionFollowType | UsersActionUnFollowType|UsersSetUserType |  SetCurrentPageType | SetTotalCountType
+    UsersActionFollowType | UsersActionUnFollowType|UsersSetUserType |
+    SetCurrentPageType | SetTotalCountType |ToggleIsFetchingType
 export type AddPostActionType = {
     type:'ADD-POST'
 }
@@ -45,6 +46,10 @@ export type UpdateNewMessageType = {
 }
 export type SendMessageType = {
     type:'SEND-MESSAGE'
+}
+export type ToggleIsFetchingType = {
+    type:'TOGGLE-IS-FETCHING'
+    isFetching:boolean
 }
 let store:StoreType = {
     _state:  {
