@@ -1,11 +1,6 @@
 import React from "react";
-import state, {
+import {
     ActionType,
-    AddPostActionType,
-    OnPostChangeActionType,
-    PostsType,
-    ProfilePageType,
-    RootStateType,
     SetCurrentPageType,
     SetTotalCountType, ToggleIsFetchingType,
     UsersActionFollowType,
@@ -57,12 +52,12 @@ const usersReducer=(state:InitialStateType=initialState,action: ActionType): Ini
     }
 
 }
-export let followAC = (userId:number):UsersActionFollowType=>({type:'FOLLOW',userId})
+export let follow = (userId:number):UsersActionFollowType=>({type:'FOLLOW',userId})
 
-export let unFollowAC=(userId:number):UsersActionUnFollowType=>({type:'UNFOLLOW',userId})
-export let setUserAC=(users:Array<UsersType>):UsersSetUserType=>({type:'SET-USER',users})
-export let setCurrentPageAC=(currentPage:number):SetCurrentPageType=>({type:'SET-CURRENT-PAGE',currentPage})
-export let setTotalCountAC=(totalCount:number):SetTotalCountType=>({type:'SET-TOTAL-COUNT',totalCount})
-export let toggleIsFetchingAC=(isFetching:boolean):ToggleIsFetchingType=>({type:'TOGGLE-IS-FETCHING',isFetching})
+export let unFollow=(userId:number):UsersActionUnFollowType=>({type:'UNFOLLOW',userId})
+export let setUsers=(users:Array<UsersType>):UsersSetUserType=>({type:'SET-USER',users})
+export let setCurrentPage=(currentPage:number):SetCurrentPageType=>({type:'SET-CURRENT-PAGE',currentPage})
+export let setTotalCount=(totalCount:number):SetTotalCountType=>({type:'SET-TOTAL-COUNT',totalCount})
+export let toggleIsFetching=(isFetching:boolean):ToggleIsFetchingType=>({type:'TOGGLE-IS-FETCHING',isFetching})
 
 export default usersReducer

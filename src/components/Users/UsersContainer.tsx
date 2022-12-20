@@ -1,16 +1,14 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {connect} from "react-redux";
 
 import {ReduxStateType} from "../../redux/redux-store";
-import {Dispatch} from "redux";
+import {compose, Dispatch} from "redux";
 import {
-    followAC,
-    InitialStateType,
-    setCurrentPageAC,
-    setTotalCountAC,
-    setUserAC, toggleIsFetchingAC,
-    unFollowAC,
-    UsersType
+    follow,
+    setCurrentPage,
+    setTotalCount,
+    setUsers, toggleIsFetching,
+    unFollow, UsersType,
 } from "../../redux/user-reducer";
 import axios from "axios";
 import Users from "./Users";
@@ -81,6 +79,7 @@ type MapDispatchPropsType = {
     toggleIsFetching:(isFetching: boolean)=>void
 }
 export type UsersPropsType = MapStatePropsType & MapDispatchPropsType;
+/*
 let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
         follow: (userId: number) => {
@@ -104,5 +103,8 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     }
 
 }
+*/
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default compose<FC>(connect(mapStateToProps, {
+ follow, unFollow, setUsers, setCurrentPage, setTotalCount, toggleIsFetching
+}))(UsersContainer);
